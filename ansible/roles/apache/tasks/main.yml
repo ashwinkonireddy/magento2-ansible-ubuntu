@@ -1,0 +1,8 @@
+---
+- name: Install apache
+  become: yes
+  apt: name=apache2 update_cache=yes state=latest
+
+- name: Enable mod rewrite
+  become: yes
+  action: command a2enmod rewrite
