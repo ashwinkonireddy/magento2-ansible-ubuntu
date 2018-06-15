@@ -3,6 +3,44 @@
   become: yes
   apt: name=apache2 update_cache=yes state=latest
 
+- name: Install libapache2-mod-php7.0
+  become: yes
+  apt: name=libapache2-mod-php7.0 update_cache=yes state=latest
+
+- name: Add virtual host
+  become: yes
+  template:
+   src: "apacheVhost.conf.j2"
+   dest: "/etc/apache2/sites-available/local.magento2.conf"
+   owner: root
+   mode: 0644
+
+
+- name: Create logs directory
+  become: yes
+  file:
+   path: "/home/vagrant/logs"
+   state: directory
+   mode: 0755
+
+- name: Disable default site
+  become: yes
+  action: command a2dissite 000-default.conf
+
+- name: Enable site
+  become: yes
+  action: command a2ensite local.magento2.conf
+
 - name: Enable mod rewrite
   become: yes
   action: command a2enmod rewrite
+
+- name: Enable mod php7.0
+  become: yes
+  action: command a2enmod php7.0
+  notify:
+   - restart apache
+#
+#- name: Ensure apache is running and enabled
+#  service: name=apache2 state=restarted enabled=yes
+#  tags: apache

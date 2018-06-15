@@ -4,9 +4,9 @@
   become: no
   become_method: sudo
   roles:
-    - common
-    - php
+#    - common
+#    - php
     - apache
-    - mariadb
-    - redis
-    # - magento2
+#    - mariadb
+#    - redis
+#    - magento2

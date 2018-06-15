@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+        ServerAdmin webmaster@example.com
+        ServerName local.magento2
+        ServerAlias www.local.magento2
+        DocumentRoot "/home/vagrant/repos/magento2"
+        ErrorLog "/home/vagrant/logs/error_log"
+        CustomLog "/home/vagrant/logs/access_log" common
+        <Directory /home/vagrant/repos/magento2>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Require all granted
+        </Directory>
+</VirtualHost>

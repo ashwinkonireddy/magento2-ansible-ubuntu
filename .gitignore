@@ -1,3 +1,6 @@
 ansible/group_vars/dev.yml
 .vagrant
 .DS_Store
+.idea/*
+.idea
+magento2
